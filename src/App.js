@@ -1,24 +1,23 @@
 import React from 'react';
 import logo from './logo.svg';
+import UserForm from './Components/Form'
+import { Container, Row, Col } from 'reactstrap';
 import './App.css';
+import Dashboard from './Components/DashBoard'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+       <Row>
+          <Col xs='12' md='12' lg='4' className='mt-2'>
+            <UserForm />
+          </Col>
+          <Col xs='12' md='12' lg='8' className='mt-5 '>
+            <Dashboard />
+          </Col>
+        </Row>
+      </Container>
     </div>
   );
 }
