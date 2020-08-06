@@ -20,8 +20,6 @@ class UserForm extends Component {
   }
 
   onChangeHandler(event) {
-    // console.log(event.target.value)
-    // console.log(event.target.name)
     let property = event.target.name;
     let value = event.target.value;
     this.setState({ [property]: value });
@@ -29,14 +27,11 @@ class UserForm extends Component {
 
   onSubmitHandler() {
     const { name, enterprise, mail, product, status } = this.state;
-    // console.log(name);
-    // console.log(enterprise);
-    // console.log(mail);
-    // console.log(product);
     let userObject = { name, enterprise, mail, product, status };
-    console.log(userObject);
+    // console.log(userObject);
     const userRef = firebase.database().ref('/users')
     userRef.push(userObject)
+    this.setState({name:"", enterprise:"", mail:"", product:"", status:""})
   }
 
   componentDidMount() {
@@ -52,19 +47,19 @@ class UserForm extends Component {
         <Form className="border border-secondary rounded p-3 mt-5 ">
           <FormGroup>
             <label className='' >Nombre</label>
-            <input className = 'w-100' name="name" onChange={this.onChangeHandler}></input>
+            <input className = 'w-100' name="name" value={this.state.name} onChange={this.onChangeHandler}></input>
           </FormGroup>
           <FormGroup>
             <label>Empresa</label>
-            <input className = 'w-100' name="enterprise" onChange={this.onChangeHandler}></input>
+            <input className = 'w-100' name="enterprise" value={this.state.enterprise} onChange={this.onChangeHandler}></input>
           </FormGroup>
           <FormGroup>
             <label>Correo</label>
-            <input name="mail" onChange={this.onChangeHandler}></input>
+            <input  className = 'w-100' name="mail" value={this.state.mail} onChange={this.onChangeHandler}></input>
           </FormGroup>
           <FormGroup>
             <Label>Producto</Label>
-            <Input type="select" name="product" onChange={this.onChangeHandler}>
+            <Input type="select" name="product" value={this.state.product} onChange={this.onChangeHandler}>
               <option>Desinfectante</option>
               <option>Papel higienico</option>
               <option>Dispensadores</option>
@@ -74,7 +69,7 @@ class UserForm extends Component {
           </FormGroup>
           <FormGroup>
             <Label>Cotizacion</Label>
-            <Input type="select" name="status" onChange={this.onChangeHandler}>
+            <Input type="select" name="status" value={this.state.status} onChange={this.onChangeHandler}>
               <option>Enviada</option>
               <option>No Enviada</option>
               
